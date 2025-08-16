@@ -1,16 +1,12 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from imblearn.over_sampling import SMOTE
+from sklearn.preprocessing import MinMaxScaler
 
-def load_and_preprocess_data():
+def load_and_preprocess_data(show_table=False):
     # Load dataset
     df = pd.read_csv('ml_model/data/kc1.csv')
-
-    # Drop missing values if any
     df.dropna(inplace=True)
 
-    # Define a new multiclass label using a weighted logic (you can adjust this)
+    # Assign new labels based on weighted metrics
     def assign_multiclass_label(row):
         score = row['loc'] * 0.5 + row['v(g)'] * 0.3 + row['ev(g)'] * 0.2
         if score < 30:
@@ -22,30 +18,24 @@ def load_and_preprocess_data():
 
     df['multiclass_label'] = df.apply(assign_multiclass_label, axis=1)
 
-    # Drop the original binary label if it exists
+    # Drop original 'defects' label if present
     if 'defects' in df.columns:
         df.drop(columns=['defects'], inplace=True)
 
-    # Split into features and target
+    # Separate features and target
     X = df.drop(columns=['multiclass_label'])
     y = df['multiclass_label']
 
-    # Scale features
-    scaler = StandardScaler()
+# Apply MinMax scaling (0 to 1)
+    scaler = MinMaxScaler()
     X_scaled = scaler.fit_transform(X)
 
-    # Train/test split
-    X_train, X_test, y_train, y_test = train_test_split(
-        X_scaled, y, test_size=0.2, random_state=42
-    )
-    
-    import numpy as np
-    unique, counts = np.unique(y_train, return_counts=True)
-    print(dict(zip(unique, counts)))
+    # Convert scaled data back to DataFrame with original column names
+    X_scaled_df = pd.DataFrame(X_scaled, columns=X.columns)
+    X_scaled_df['multiclass_label'] = y.values  # Add label back for display
 
+    # Optionally display first 5 rows
+    if show_table:
+        print(X_scaled_df.head())
 
-    # Apply SMOTE to balance the training data
-    smote = SMOTE(random_state=42, k_neighbors=1)
-    X_train_resampled, y_train_resampled = smote.fit_resample(X_train, y_train)
-
-    return X_train_resampled, X_test, y_train_resampled, y_test
+    return X_scaled, y

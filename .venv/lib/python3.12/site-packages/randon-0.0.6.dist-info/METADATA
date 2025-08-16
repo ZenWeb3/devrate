@@ -1,0 +1,78 @@
+Metadata-Version: 2.1
+Name: randon
+Version: 0.0.6
+Summary: makes random number
+Author: Technical Earth
+Author-email: technicalearth0@gmail.com
+License: UNKNOWN
+Keywords: python,random,number,add,multiply,PYPI
+Platform: UNKNOWN
+Classifier: Development Status :: 1 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# Randon
+
+Developed by Roop Majumder from Technical Earth (c) 2020
+
+## Examples of How To Use
+
+using intrand
+
+```python
+from randon import intrand
+
+intrand()
+```
+
+using floatrand
+
+```python
+from randon import floatrand
+
+floatrand()
+```
+
+using odd
+
+```python
+from randon import odd
+
+odd()
+```
+
+using even
+
+```python
+from randon import even
+
+even()
+```
+
+using guess_the_number
+
+```python
+from randon import guess_the_number
+
+guess_the_number()
+```
+
+usong RandonCode
+
+```python
+from randon import RandonCode
+
+# RandonCode(num1, num2)
+
+RandonCode(10, 70)
+```
+	
+##### There are more to explore stay around
+
+##### to learn about randon go to the documentation.
+
