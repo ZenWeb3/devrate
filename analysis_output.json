@@ -1,0 +1,41 @@
+{
+  "metrics": {
+    "d": 7.5,
+    "loc": 18,
+    "v(g)": 6,
+    "branchCount": 4,
+    "lOCode": 17,
+    "uniq_Opnd": 8,
+    "iv(g)": 5,
+    "ev(g)": 5,
+    "uniq_Op": 9,
+    "total_Op": 35
+  },
+  "selected_features": [
+    "loc",
+    "v(g)",
+    "ev(g)",
+    "iv(g)",
+    "d",
+    "lOCode",
+    "uniq_Op",
+    "uniq_Opnd",
+    "total_Op",
+    "branchCount"
+  ],
+  "problems": [
+    "No operands detected"
+  ],
+  "recommendations": [
+    "Check if the function lacks meaningful operations"
+  ],
+  "prediction": {
+    "label": "low",
+    "class": 2,
+    "probabilities": {
+      "high": 0.0,
+      "medium": 0.0,
+      "low": 1.0
+    }
+  }
+}
